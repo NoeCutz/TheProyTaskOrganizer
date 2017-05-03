@@ -13,7 +13,12 @@ class CreateReviewsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('reviews', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('title');
+            $table->text('description');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class CreateReviewsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('reviews');
     }
 }
