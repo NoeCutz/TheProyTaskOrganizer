@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTasksTable extends Migration
+class CreateUserTaskMigration extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateTasksTable extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->text('description');
-            $table->string('state');
-            $table->timestamps();
-        });
+        Schema::table('tasks', function(Blueprint $table)
+         {
+           $table->foreign('user_id')->references('id')->on('user')
+           ->onDelete('cascade');
+         });
     }
 
     /**
@@ -29,6 +27,9 @@ class CreateTasksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
+      Schema::table('tasks', function(Blueprint $table)
+      {
+        $table->dropForeign('tasks_user_id_foreign');
+      });
     }
 }
