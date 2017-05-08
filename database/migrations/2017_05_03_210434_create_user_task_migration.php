@@ -15,13 +15,17 @@ class CreateUserTaskMigration extends Migration
     {
         Schema::table('tasks', function(Blueprint $table)
          {
-           $table->foreign('user_id')->references('id')->on('user')
+
+           $table->foreign('project_id')->references('id')->on('projects')
            ->onDelete('cascade');
+
+           $table->foreign('user_id')->references('id')->on('user')
          });
     }
 
     /**
      * Reverse the migrations.
+     ->onDelete('cascade');
      *
      * @return void
      */
@@ -29,6 +33,7 @@ class CreateUserTaskMigration extends Migration
     {
       Schema::table('tasks', function(Blueprint $table)
       {
+        $table->dropForeign('tasks_project_id_foreign');
         $table->dropForeign('tasks_user_id_foreign');
       });
     }

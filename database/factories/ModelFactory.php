@@ -49,6 +49,6 @@ $factory->define(App\Task::class, function (Faker\Generator $faker) {
   return [
     'name' => $faker->word,
     'description' => $faker->text,
-    'state' => $faker->word
+    'state' => $faker->randomElement($array = array ('Not initialized','In process', 'Finalized'))
   ];
 });

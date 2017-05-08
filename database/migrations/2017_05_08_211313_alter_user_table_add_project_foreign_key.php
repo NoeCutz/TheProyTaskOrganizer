@@ -13,7 +13,7 @@ class AlterUserTableAddProjectForeignKey extends Migration
      */
     public function up()
     {
-        chema::table('users', function (Blueprint $table)
+        Schema::table('users', function (Blueprint $table)
         {
             $table->integer('project_id')->unsigned();
 
