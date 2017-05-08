@@ -10,7 +10,7 @@ class Task extends Model
      *
      * @var array
      */
-    protected $fillable = ['id_project', 'id_user', 'id_rol', 'name', 'description', 'state'];
+    protected $fillable = ['name', 'description', 'state'];
 
     public function project(){
       return $this->belongsTo(Project::class);
