@@ -67,6 +67,14 @@ return [
             'sslmode' => 'prefer',
         ],
 
+          //Configuración de la base de datos en memoria
+        'sqlite' => [ //Este es el nombre de la conexión
+
+            'driver' => 'sqlite',
+            'database' =>':memory:',
+            'prefix' => '',
+        ],
+
     ],
 
     /*
