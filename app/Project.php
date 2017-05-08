@@ -7,7 +7,10 @@ class Project
      *
      * @var array
      */
-    protected $fillable = [
-        'id', 'name', 'description',
-    ];
+    protected $fillable = ['id', 'name', 'description',];
+
+    public function tasks()
+    {
+      return $this->hasMany(Task::class);
+    }
 }
