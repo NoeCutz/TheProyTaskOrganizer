@@ -1,16 +1,19 @@
 <?php
-namespace App;
-class Project
-{
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['id', 'name', 'description',];
 
-    public function tasks()
-    {
-      return $this->hasMany(Task::class);
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Project extends Model
+{
+    //
+    protected $fillable = ['name', 'description'];
+
+    public function role(){
+        return $this->hasMany(Role::class);
+    }
+
+    public function user(){
+        return $this->hasMany(User::class);
     }
 }
