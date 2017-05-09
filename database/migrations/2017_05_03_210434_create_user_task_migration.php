@@ -20,12 +20,12 @@ class CreateUserTaskMigration extends Migration
            ->onDelete('cascade');
 
            $table->foreign('user_id')->references('id')->on('user')
+           ->onDelete('cascade');
          });
     }
 
     /**
      * Reverse the migrations.
-     ->onDelete('cascade');
      *
      * @return void
      */
