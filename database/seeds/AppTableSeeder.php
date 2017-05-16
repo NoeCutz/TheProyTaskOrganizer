@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
+use App\Task;
+use App\Role;
 use App\Project;
 
 class AppTableSeeder extends Seeder
@@ -14,25 +16,42 @@ class AppTableSeeder extends Seeder
     public function run()
     {
         $numOfProjects = 10;
-        $numOfUsers = 25;
-        $numOfRoles = 9;
-        $numberOftasks = 30;
+        $numOfUsers = 5;
+        $numOfRoles = 10;
+        $numberOftasks = 10;
 
-        factory(\App\Project::Class, $numOfProjects)->create();
+        factory(\App\Project::Class, $numOfProjects)->create()->each(function($p){
+          $p->users()->save(factory(\App\User::Class, $numOfUsers)->create());
+          $p->roles()->save(factory(\App\Role::Class, $numOfRoles)->create());
+        });
 
+        $users = App\User::all();
+
+        foreach ($users as $user) {
+
+        }
+
+
+/*
         factory(\App\User::Class, $numOfUsers)->create([
           'project_id' => App\Project::all('id')->random(),
         ]);
 
-        factory(\App\Task::Class, $numberOftasks)->create([
-          'project_id' => App\Project::all('id')->random(),
-          'user_id' => App\User::get('id', 'project_id')->random()
-        ]);
+
+
+
+
+
+        $projects = App\Project::all();
+
+        $projects = $projects->each(function($p){
+          $p->tasks()->save(factory(\App\Task::Class, $numberOftasks)->create([
+            'project_id' => $p->id
+          ]));
+        });
 
         $leader_role;
         factory(\App\Roles::Class, $numOfRoles)->create();
-
-        $usersIds = App\Users::all('id');
-
+  */
     }
 }
