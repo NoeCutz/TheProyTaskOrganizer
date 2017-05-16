@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterRoleTableAddUserForeignKey extends Migration
+class AlterTaskTableAddRoleForeign extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class AlterRoleTableAddUserForeignKey extends Migration
      */
     public function up()
     {
-      Schema::table('roles', function (Blueprint $table)
+      Schema::table('tasks', function (Blueprint $table)
       {
-          $table->integer('user_id')->unsigned();
-          $table->foreign('user_id')->references('id')->on('users');
+          $table->integer('role_id')->unsigned();
+          $table->foreign('role_id')->references('id')->on('roles');
       });
     }
 
@@ -27,9 +27,6 @@ class AlterRoleTableAddUserForeignKey extends Migration
      */
     public function down()
     {
-      Schema::table('roles', function(Blueprint $table)
-      {
-          $table->dropForeign('roles_user_id_foreign');
-      });
+        $table->dropForeign('tasks_role_id_foreign');
     }
 }

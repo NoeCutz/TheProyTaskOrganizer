@@ -12,7 +12,7 @@ class Role extends Model
     protected $fillable = ['name'];
 
     public function user(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'users_roles');
     }
 
     public function project(){
@@ -20,6 +20,6 @@ class Role extends Model
     }
 
     public function task(){
-        return $this->belongsToMany(Task::class);
+        return $this->hasMany(Task::class);
     }
 }
