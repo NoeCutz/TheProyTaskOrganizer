@@ -24,19 +24,19 @@ class User extends Authenticatable
     protected $hidden = ['password', 'remember_token'];
 
 
-    public function project(){
-        return $this->belongsToMany(Project::class);
+    public function projects(){
+        return $this->belongsToMany(Project::class, 'users_projects');
     }
 
-    public function role(){
-        return $this->hasMany(Role::class);
+    public function roles(){
+        return $this->belongsToMany(Role::class, 'users_roles');
     }
 
-    public function review(){
+    public function reviews(){
         return $this->hasMany(Review::class);
     }
 
-    public function task(){
+    public function tasks(){
         return $this->hasMany(Task::class);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 namespace App;
+use App\Review;
 use App\Project;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,6 +22,11 @@ class Task extends Model
     }
 
     public function role(){
-        return $this->hasOne(Role::class);
+      return $this->belongsTo(Role::class);
+    }
+
+    public function reviews()
+    {
+      return $this->hasMany(Review::class);
     }
 }
