@@ -25,6 +25,7 @@ class AppTableSeeder extends Seeder
           $p->roles()->save(factory(\App\Role::Class, $numOfRoles)->create());
         });
 
+        /*
         $users = App\User::all();
 
         foreach ($users as $user) {
@@ -32,7 +33,6 @@ class AppTableSeeder extends Seeder
         }
 
 
-/*
         factory(\App\User::Class, $numOfUsers)->create([
           'project_id' => App\Project::all('id')->random(),
         ]);
