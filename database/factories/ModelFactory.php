@@ -1,7 +1,9 @@
 <?php
 use App\Review;
 use App\Project;
-
+use App\User;
+use App\Role;
+use App\Task;
 /*
 |--------------------------------------------------------------------------
 | Model Factories

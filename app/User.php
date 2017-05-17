@@ -2,12 +2,13 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+//use Illuminate\Notifications\Notifiable;
+//use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class User extends Model
 {
-    use Notifiable;
+    //use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -24,19 +25,19 @@ class User extends Authenticatable
     //protected $hidden = ['password', 'remember_token'];
 
 
-    public function project(){
+    public function projects(){
         return $this->belongsToMany(Project::class);
     }
 
-    public function role(){
+    public function roles(){
         return $this->hasMany(Role::class);
     }
 
-    public function review(){
+    public function reviews(){
         return $this->hasMany(Review::class);
     }
 
-    public function task(){
+    public function tasks(){
         return $this->hasMany(Task::class);
     }
 }
