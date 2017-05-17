@@ -21,7 +21,7 @@ class AppTableSeeder extends Seeder
         $numberOftasks = 10;
 
         factory(\App\Project::Class, $numOfProjects)->create()->each(function($p){
-          $p->users()->save(factory(\App\User::Class, $numOfUsers)->create());
+          $p->users()->save(factory(\App\User::Class, 5)->create());
           $p->roles()->save(factory(\App\Role::Class, $numOfRoles)->create());
         });
 

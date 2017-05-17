@@ -28,7 +28,6 @@ class AlterRoleTableAddProjectForeignKey extends Migration
      */
     public function down()
     {
-        //
         Schema::table('roles', function(Blueprint $table)
         {
             $table->dropForeign('roles_project_id_foreign');

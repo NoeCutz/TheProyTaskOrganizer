@@ -21,22 +21,22 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $hidden = ['password', 'remember_token'];
+    //protected $hidden = ['password', 'remember_token'];
 
 
-    public function projects(){
-        return $this->belongsToMany(Project::class, 'users_projects');
+    public function project(){
+        return $this->belongsToMany(Project::class);
     }
 
-    public function roles(){
-        return $this->belongsToMany(Role::class, 'users_roles');
+    public function role(){
+        return $this->hasMany(Role::class);
     }
 
-    public function reviews(){
+    public function review(){
         return $this->hasMany(Review::class);
     }
 
-    public function tasks(){
+    public function task(){
         return $this->hasMany(Task::class);
     }
 }
