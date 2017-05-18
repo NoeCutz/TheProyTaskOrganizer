@@ -16,42 +16,45 @@ class AppTableSeeder extends Seeder
     public function run()
     {
         $numOfProjects = 10;
-        $numOfUsers = 5;
-        $numOfRoles = 10;
-        $numberOftasks = 10;
+        $numOfUsers = 10;
 
+
+        factory(\App\User::Class, $numOfUsers)->create();
         factory(\App\Project::Class, $numOfProjects)->create()->each(function($p){
-          $p->users()->save(factory(\App\User::Class)->create());
-          $p->roles()->save(factory(\App\Role::Class)->create());
-        });
 
-        /*
-        $users = App\User::all();
+             $numOfRoles = 4;
+             $numberOftasks = 10;
 
-        foreach ($users as $user) {
+             $users_random = App\User::all()->random(4);
+             $users = $p->users()->saveMany($users_random);
+             $project_id = $p -> id;
+             $roles =$p-> roles() -> saveMany(
+                 factory(\App\Role::Class,$numOfRoles)->create([
+                   'project_id' => $project_id
+                 ])
+               );
+            foreach($roles as $role){
+              $user = $users -> pop();
+              $user_id = $user -> id;
+              $role_id= $role -> id;
+              $role -> users()->save($user);
+              $tasks = $p -> tasks() -> saveMany(
+                factory(\App\Task::Class,2)->create([
+                  'project_id' => $project_id,'user_id' => $user_id, 'role_id' => $role_id
+                ])
+              );
+              $user -> tasks()-> saveMany($tasks);
 
-        }
-
-
-        factory(\App\User::Class, $numOfUsers)->create([
-          'project_id' => App\Project::all('id')->random(),
-        ]);
-
-
-
-
-
-
-        $projects = App\Project::all();
-
-        $projects = $projects->each(function($p){
-          $p->tasks()->save(factory(\App\Task::Class, $numberOftasks)->create([
-            'project_id' => $p->id
-          ]));
-        });
-
-        $leader_role;
-        factory(\App\Roles::Class, $numOfRoles)->create();
-  */
+              foreach ($tasks as $task) {
+                $task_id = $task-> id;
+                $reviews = $task -> reviews()->saveMany(
+                  factory(\App\Review::Class,2)->create([
+                  'user_id' => $user_id, 'task_id' => $task_id
+                  ])
+                );
+              $user -> reviews()-> saveMany($reviews);
+              }
+            }
+         });
     }
 }

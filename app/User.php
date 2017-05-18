@@ -30,7 +30,7 @@ class User extends Model
     }
 
     public function roles(){
-        return $this->hasMany(Role::class);
+        return $this->belongsToMany(Role::class);
     }
 
     public function reviews(){
