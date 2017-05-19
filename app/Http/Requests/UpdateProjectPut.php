@@ -24,7 +24,8 @@ class UpdateProjectPut extends FormRequest
     public function rules()
     {
         return [
-            //
+          'name' => 'required |string',
+          'description' => 'required | string'
         ];
     }
 }

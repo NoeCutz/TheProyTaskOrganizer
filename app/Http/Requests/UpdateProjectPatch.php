@@ -13,7 +13,7 @@ class UpdateProjectPatch extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class UpdateProjectPatch extends FormRequest
     public function rules()
     {
         return [
-            //
+          'name' => ' required_without_all:description | string',
+          'description' => 'required_without_all: name | string'
         ];
     }
 }
