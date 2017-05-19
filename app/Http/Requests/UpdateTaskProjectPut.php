@@ -13,7 +13,7 @@ class UpdateTaskProjectPut extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class UpdateTaskProjectPut extends FormRequest
     public function rules()
     {
         return [
-            //
+          'user_id' => 'required | integer',
+          'name' => 'required | string',
+          'description' => 'required | string',
+          'state' => 'required | string',
+          'role_id' => 'required | integer'
         ];
     }
 }

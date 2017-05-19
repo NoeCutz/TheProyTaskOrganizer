@@ -13,7 +13,7 @@ class UpdateUserPatch extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class UpdateUserPatch extends FormRequest
     public function rules()
     {
         return [
-            //
+          'name' => 'required_without: password,mail | string',
+          'password' => 'required_without:name, mail | string',
+          'mail' => 'required_without:password, name | email'
         ];
     }
 }
