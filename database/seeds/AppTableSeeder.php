@@ -22,12 +22,21 @@ class AppTableSeeder extends Seeder
         factory(\App\User::Class, $numOfUsers)->create();
         factory(\App\Project::Class, $numOfProjects)->create()->each(function($p){
 
+
+
              $numOfRoles = 4;
              $numberOftasks = 10;
 
              $users_random = App\User::all()->random(4);
              $users = $p->users()->saveMany($users_random);
              $project_id = $p -> id;
+             $p-> roles() -> save(
+                 factory(\App\Role::Class)->create([
+                   'project_id' => $project_id,'name' =>'leader'
+                 ])
+               );
+
+
              $roles =$p-> roles() -> saveMany(
                  factory(\App\Role::Class,$numOfRoles)->create([
                    'project_id' => $project_id
