@@ -24,10 +24,8 @@ class CreateTasksTable extends Migration
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
 
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
 
-            $table->integer('rol_id')->unsigned();
-            $table->foreign('rol_id')->references('id')->on('roles');
 
             $table->timestamps();
         });
@@ -43,10 +41,8 @@ class CreateTasksTable extends Migration
         Schema::table('tasks', function(Blueprint $table)
         {
           $table->dropForeign('tasks_project_id_foreign');
-          $table->dropForeign('tasks_rol_id_foreign');
+          $table->dropForeign('tasks_user_id_foreign');
         });
-
-
         Schema::dropIfExists('tasks');
     }
 }

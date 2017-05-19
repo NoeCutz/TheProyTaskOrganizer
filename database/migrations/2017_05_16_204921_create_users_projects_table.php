@@ -29,6 +29,6 @@ class CreateUsersProjectsTable extends Migration
      */
     public function down()
     {
-        chema::drop('users_projects');
+        Schema::drop('users_projects');
     }
 }

@@ -17,8 +17,7 @@ class AlterRoleTableAddProjectForeignKey extends Migration
         {
             $table->integer('project_id')->unsigned();
 
-            $table->foreign('project_id')->references('id')->on('projects')
-                ->onDelete('cascade');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }
 
@@ -29,7 +28,6 @@ class AlterRoleTableAddProjectForeignKey extends Migration
      */
     public function down()
     {
-        //
         Schema::table('roles', function(Blueprint $table)
         {
             $table->dropForeign('roles_project_id_foreign');

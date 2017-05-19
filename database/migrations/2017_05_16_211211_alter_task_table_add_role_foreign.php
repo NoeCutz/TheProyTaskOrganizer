@@ -27,6 +27,11 @@ class AlterTaskTableAddRoleForeign extends Migration
      */
     public function down()
     {
-        $table->dropForeign('tasks_role_id_foreign');
+
+      Schema::table('tasks', function(Blueprint $table)
+      {
+            $table->dropForeign('tasks_role_id_foreign');
+      });
+
     }
 }
