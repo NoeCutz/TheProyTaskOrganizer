@@ -58,7 +58,7 @@ Route::get('projects/{project}/users/{user}/tasks','ProjectsController@userTasks
 Route::post('projects/{project}/roles','RolesController@storeRole');
 //milka
 
-Route::get('projects/{project}/roles','RolesController@roles');
+Route::get('projects/{project}/roles','RolesController@index');
 
 /*****************************************************************/
 
