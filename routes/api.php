@@ -26,7 +26,7 @@ Route::post('projects','ProjectsController@store');
 
 Route::put('projects/{project}','ProjectsController@update');
 
-Route::patch('projects/{project}','ProjectsController@update');
+Route::patch('projects/{project}','ProjectsController@updatePartial');
 //termina aqui pat
 
 Route::delete('projects/{project}','ProjectsController@destroy');
@@ -48,7 +48,7 @@ Route::post('projects/{project}/tasks','ProjectsController@storeTask');
 
 Route::put('projects/{project}/tasks/{task}','TasksController@updateTask');
 
-Route::put('projects/{project}/tasks/{task}','TasksController@updateTask');
+Route::patch('projects/{project}/tasks/{task}','TasksController@updatePartialTask');
 
 Route::get('projects/{project}/users/{user}/tasks','ProjectsController@userTasks');
 
@@ -70,7 +70,7 @@ Route::post('users','UsersController@store');
 
 Route::put('users/{user}','UsersController@update');
 
-Route::patch('users/{user}','UsersController@update');
+Route::patch('users/{user}','UsersController@updatePartial');
 
 Route::delete('users/{user}','UsersController@destroy');
 
