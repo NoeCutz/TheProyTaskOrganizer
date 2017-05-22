@@ -78,7 +78,7 @@ Route::get('users/{user}/roles','UsersController@roles');
 
 /*****************************************************************/
 
-Route::get('tasks/{task}/reviews', 'TasksController@reviews');
+Route::get('tasks/{task}/reviews', 'TasksController@indexReviews');
 
 Route::post('tasks/{task}/reviews','TasksController@storeReview');
 
