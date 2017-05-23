@@ -29,18 +29,18 @@ Route::put('projects/{project}','ProjectsController@update');
 Route::patch('projects/{project}','ProjectsController@updatePartial');
 //termina aqui pat
 
-Route::delete('projects/{project}','ProjectsController@destroy');
+Route::delete('projects/{project}','ProjectsController@destroy'); //PENDIENTE
 
-Route::get('projects/{project}/users','ProjectsController@users');
+Route::get('projects/{project}/users','ProjectsController@users'); //Listo
 
-Route::get('projects/{project}/roles','ProjectsController@roles');
-
-
+Route::get('projects/{project}/roles','ProjectsController@roles'); //Listo
 
 
-Route::delete('projects/{project}/tasks/{task}','ProjectsController@destroyTask');
 
-Route::get('projects/{project}/tasks','ProjectsController@tasks');
+
+Route::delete('projects/{project}/tasks/{task}','ProjectsController@destroyTask');//PENDIENTE
+
+Route::get('projects/{project}/tasks','ProjectsController@tasks');//Listo
 //angel
 
 
