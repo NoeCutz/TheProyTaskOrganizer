@@ -25,10 +25,10 @@ class UpdateTaskProjectPatch extends FormRequest
     {
         return [
           'user_id' => 'required | integer',
-          'name' => 'required | string',
-          'description' => 'required | string',
-          'state' => 'required | string',
-          'role_id' => 'required | integer'
+          'name' => 'required_without: description, state, role_id, user_id | string',
+          'description' => 'required_without: name, state, role_id, user_id | string',
+          'state' => 'required_without: name, description, role_id, user_id | string',
+          'role_id' => 'required_without: user_id, name, description, state | integer'
         ];
     }
 }
