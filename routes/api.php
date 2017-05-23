@@ -84,11 +84,7 @@ Route::post('tasks/{task}/reviews','TasksController@storeReview');
 
 Route::delete('tasks/{task}/reviews/{review}','TasksController@destroyReview'); //ESTA
 
-Route::put('tasks/{task}/reviews/{review}','TasksController@updateReview'); //ESTA
+Route::put('reviews/{review}','ReviewsController@updateReview'); //ESTA
 //noe
 
 /*****************************************************************/
-
-
-
-
