@@ -6,6 +6,9 @@ use App\Task;
 use App\Review;
 use App\Project;
 use App\Http\Requests\StoreReviewTaskPost;
+use App\Http\Requests\UpdateTaskProjectPut;
+use App\Http\Requests\UpdateTaskProjectPatch;
+use Illuminate\Support\Facades\Auth;
 
 class TasksController extends Controller
 {
@@ -16,10 +19,27 @@ class TasksController extends Controller
     public function storeReview(Task $task, StoreReviewTaskPost $request)
     {
        $attributes = $request->all();
-        $review= Review::create($attributes);
-        $task_id = $task-> id;
-        $review ->task() -> associate($task_id);
-        $review -> save();
+        $review= new Review($attributes);
+        $user= Auth::user();
+
+        $review -> task() -> associate($task);
+        $user -> reviews() -> save($review);
+
+        //$task -> reviews() -> save($review);
        return Response::json($task->load('reviews'));
     }
+
+
+  public function updateTask(UpdateTaskProjectPut $request, Project $project, Task $task){
+      $attributes = $request->all();
+      $task->update($attributes);
+      return Response::json($task);
+  }
+
+  public function updatePartialTask(Project $project, Task $task, UpdateTaskProjectPatch $request){
+    $attributes = $request->all();
+    $task -> update($attributes);
+    return Response::json($task);
+  }
+
 }

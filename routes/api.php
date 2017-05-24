@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 */
 
 
-Route::middleware('auth.basic')->get('tasks/{task}/reviews', 'TasksController@indexReviews');
 
 
 
@@ -50,7 +49,7 @@ Route::put('projects/{project}/tasks/{task}','TasksController@updateTask');
 
 Route::patch('projects/{project}/tasks/{task}','TasksController@updatePartialTask');
 
-Route::get('projects/{project}/users/{user}/tasks','ProjectsController@userTasks');
+Route::middleware('auth.basic')->get('projects/{project}/users/{user}/tasks','ProjectsController@userTasks');
 
 
 
@@ -79,12 +78,13 @@ Route::middleware('auth.basic')->get('users/{user}/roles','UsersController@roles
 /*****************************************************************/
 
 
+Route::middleware('auth.basic')->get('tasks/{task}/reviews', 'TasksController@indexReviews');
 
-Route::post('tasks/{task}/reviews','TasksController@storeReview');
+Route::middleware('auth.basic')->post('tasks/{task}/reviews','TasksController@storeReview');
 
-Route::delete('reviews/{review}','ReviewsController@destroy'); //ESTA
+Route::middleware('auth.basic')->delete('reviews/{review}','ReviewsController@destroy'); //ESTA
 
-Route::put('reviews/{review}','ReviewsController@update'); //ESTA
+Route::middleware('auth.basic')->put('reviews/{review}','ReviewsController@update'); //ESTA
 //noe
 
 /*****************************************************************/
