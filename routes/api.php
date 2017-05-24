@@ -13,9 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 
 Route::get('projects', 'ProjectsController@index');
@@ -62,19 +59,19 @@ Route::get('projects/{project}/roles','RolesController@index');
 
 /*****************************************************************/
 
-Route::get('users', 'UsersController@index');
+Route::middleware('auth.basic')->get('users', 'UsersController@index');
 
-Route::get('users/{user}','UsersController@show');
+Route::middleware('auth.basic')->get('users/{user}','UsersController@show');
 
-Route::post('users','UsersController@store');
+Route::middleware('auth.basic')->post('users','UsersController@store');
 
-Route::put('users/{user}','UsersController@update');
+Route::middleware('auth.basic')->put('users/{user}','UsersController@update');
 
-Route::patch('users/{user}','UsersController@updatePartial');
+Route::middleware('auth.basic')->patch('users/{user}','UsersController@updatePartial');
 
-Route::delete('users/{user}','UsersController@destroy');
+Route::middleware('auth.basic')->delete('users/{user}','UsersController@destroy');
 
-Route::get('users/{user}/roles','UsersController@roles');
+Route::middleware('auth.basic')->get('users/{user}/roles','UsersController@roles');
 
 /*****************************************************************/
 
