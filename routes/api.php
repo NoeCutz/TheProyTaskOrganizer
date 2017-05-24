@@ -34,16 +34,16 @@ Route::patch('projects/{project}','ProjectsController@updatePartial');
 
 Route::middleware('auth.basic')->delete('projects/{project}','ProjectsController@destroy'); //PENDIENTE
 
-Route::get('projects/{project}/users','ProjectsController@users'); //Listo
+Route::middleware('auth.basic')->get('projects/{project}/users','ProjectsController@users'); //Listo
 
-Route::get('projects/{project}/roles','ProjectsController@roles'); //Listo
-
-
+Route::middleware('auth.basic')->get('projects/{project}/roles','ProjectsController@roles'); //Listo
 
 
-Route::delete('projects/{project}/tasks/{task}','ProjectsController@destroyTask');//PENDIENTE
 
-Route::get('projects/{project}/tasks','ProjectsController@tasks');//Listo
+
+Route::middleware('auth.basic')->delete('projects/{project}/tasks/{task}','ProjectsController@destroyTask');//PENDIENTE
+
+Route::middleware('auth.basic')->get('projects/{project}/tasks','ProjectsController@tasks');//Listo
 //angel
 
 

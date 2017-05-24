@@ -11,17 +11,18 @@ use Response;
 class ProjectsController extends Controller
 {
     //
-    public function destroy(Project $project)
+    public function destroy (Project $project)
     {
-        $user = Auth::user();
-
+        $user = Auth::User();
+        echo $user->role_user;
         foreach ($user->roles() as $role) {
-            if ($role == 'leader' && $role.project_id == $project.id) {
+            echo $role;
+            if ($role == 'leader' && $role->project_id() == $project->id()) {
                 if ($project->tasks() == null) {
                     $project->delete();
                     return Response::json([], 204);
                 }else {
-                    echo "No puedes eleminiar proyectos con tareas.";
+                    echo "No puedes eliminar proyectos con tareas.";
                 }
             }else{
                 echo "No eres el lider del proyecto";
@@ -31,7 +32,7 @@ class ProjectsController extends Controller
 
     public function destroyTask(Project $project, Task $task)
     {
-        $tasks = $project->tasks();
+        $user = Auth::User();
         $task->delete();
         return Response::json([], 204);
     }
