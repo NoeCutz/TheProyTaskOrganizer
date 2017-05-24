@@ -10,7 +10,7 @@ use App\Http\Requests\UpdateReviewPut;
 class TasksController extends Controller
 {
     public function indexReviews(Task $task){
-    return Response::json($task->load('reviews'));
+      return Response::json($task->load('reviews'));
     }
 
     public function storeReview(Task $task,StoreReviewTaskPost $request)
@@ -34,6 +34,6 @@ class TasksController extends Controller
     $attributes = $request->input('descripcion');
     $review -> update($attributes);
     return Response::json([],204);
-  }
+    }
 
 }

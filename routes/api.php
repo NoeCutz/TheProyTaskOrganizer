@@ -88,7 +88,3 @@ Route::put('tasks/{task}/reviews/{review}','TasksController@updateReview'); //ES
 //noe
 
 /*****************************************************************/
-
-
-
-
