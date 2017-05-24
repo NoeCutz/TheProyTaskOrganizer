@@ -23,11 +23,9 @@ class TasksController extends Controller
        return Response::json($task->load('reviews'));
     }
 
-    public function destroyReview(Review $review)
-    {
-    $review -> delete();
-    return Response::json([],204);
-  }
+    
+
+
 
 
 

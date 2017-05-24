@@ -2,13 +2,13 @@
 
 namespace App;
 
-//use Illuminate\Notifications\Notifiable;
-//use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+//use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class User extends Authenticatable
 {
-    //use Notifiable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -22,7 +22,7 @@ class User extends Model
      *
      * @var array
      */
-    //protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['password', 'remember_token'];
 
 
     public function projects(){
