@@ -32,7 +32,7 @@ Route::put('projects/{project}','ProjectsController@update');
 Route::patch('projects/{project}','ProjectsController@updatePartial');
 //termina aqui pat
 
-Route::delete('projects/{project}','ProjectsController@destroy'); //PENDIENTE
+Route::middleware('auth.basic')->delete('projects/{project}','ProjectsController@destroy'); //PENDIENTE
 
 Route::get('projects/{project}/users','ProjectsController@users'); //Listo
 

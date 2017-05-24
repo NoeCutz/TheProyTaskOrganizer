@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use App\Task;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use Response;
 
 class ProjectsController extends Controller
@@ -11,11 +13,19 @@ class ProjectsController extends Controller
     //
     public function destroy(Project $project)
     {
-        if ($project->tasks() == null) {
-            $project->delete();
-            return Response::json([], 204);
-        }else {
-            echo "No puedes eleminiar proyectos con tareas.";
+        $user = Auth::user();
+
+        foreach ($user->roles() as $role) {
+            if ($role == 'leader' && $role.project_id == $project.id) {
+                if ($project->tasks() == null) {
+                    $project->delete();
+                    return Response::json([], 204);
+                }else {
+                    echo "No puedes eleminiar proyectos con tareas.";
+                }
+            }else{
+                echo "No eres el lider del proyecto";
+            }
         }
     }
 
