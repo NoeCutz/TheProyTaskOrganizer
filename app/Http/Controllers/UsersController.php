@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserPost;
+use App\Http\Requests\UpdateUserPatch;
+use App\Http\Requests\UpdateUserPut;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Response;
 
 class UsersController extends Controller
 {
@@ -46,7 +52,8 @@ class UsersController extends Controller
     }
     public function roles(User $user){
         $userInstance = User::findOrFail($user);
-        return Response::json($userInstance->load('roles'));
+
+        return Response::json($userInstance->roles()->get());
     }
 
 }
