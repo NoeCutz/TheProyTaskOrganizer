@@ -10,7 +10,7 @@ use App\Http\Requests\StoreReviewTaskPost;
 class TasksController extends Controller
 {
     public function indexReviews(Task $task){
-    return Response::json($task->load('reviews'));
+      return Response::json($task->load('reviews'));
     }
 
     public function storeReview(Task $task, StoreReviewTaskPost $request)
@@ -22,11 +22,4 @@ class TasksController extends Controller
         $review -> save();
        return Response::json($task->load('reviews'));
     }
-
-    
-
-
-
-
-
 }

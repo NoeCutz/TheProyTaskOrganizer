@@ -1,42 +1,27 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Response;
+use Illuminate\Http\Request;
+use App\User;
 use App\Project;
 use App\Task;
-use App\User;
-use Illuminate\Support\Facades\Auth;
-use Response;
+use App\Http\Requests\StoreProjectPost;
 
 class ProjectsController extends Controller
 {
-    //
-    public function destroy (Project $project)
-    {
-        $user = Auth::User();
-        echo $user->role_user;
-        foreach ($user->roles() as $role) {
-            echo $role;
-            if ($role == 'leader' && $role->project_id() == $project->id()) {
-                if ($project->tasks() == null) {
-                    $project->delete();
-                    return Response::json([], 204);
-                }else {
-                    echo "No puedes eliminar proyectos con tareas.";
-                }
-            }else{
-                echo "No eres el lider del proyecto";
-            }
-        }
-    }
 
-    public function destroyTask(Project $project, Task $task)
-    {
-        $user = Auth::User();
-        $task->delete();
-        return Response::json([], 204);
-    }
-    public function users(Project $project)
+  public function index()
+  {
+    return Response::json(Project::all());
+  }
+
+  public function show($id)
+  {
+    return response()->json(Project::findOrFail($id));
+  }
+
+  public function users(Project $project)
     {
         $users = $project -> users()->get();
         return Response::json($users);
@@ -47,9 +32,37 @@ class ProjectsController extends Controller
         $roles = $project -> roles()->get();
         return Response::json($roles);
     }
+
     public function tasks(Project $project)
     {
         $tasks = $project -> tasks()->get();
         return Response::json($tasks);
     }
+
+  public function store(StoreProjectPost $request)
+  {
+    $attributes = $request->all();
+    $project = Project::create($attributes);
+    return response()->json($project);
+  }
+
+  public function update(UpdateProjectPut $request, Project $project)
+  {
+    $attributes = $request->all();
+    $project->update($attributes);
+    return $project;
+  }
+
+  public function updatePartial(UpdateProjectPut $request, Project $project)
+  {
+    $attributes = $request->all();
+    $project->update($attributes);
+    return $project;
+  }
+
+  public function destroyTask(Project $project, Task $task)
+  {
+      $task->delete();
+      return response()->json('', 204);
+  }
 }
