@@ -4,12 +4,11 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-//se Illuminate\Database\Eloquent\Model;
+
 use App\Project;
 use App\Role;
 use App\Review;
 use App\Task;
-
 
 class User extends Authenticatable
 {

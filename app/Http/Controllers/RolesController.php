@@ -10,7 +10,7 @@ class RolesController extends Controller
     public function index(Project $project){
     return Response::json($project->load('roles'));
     }
-    
+
     public function storeReview(Project $project,StoreRoleProjectPost $request)
     {
        $attributes = $request->input('name');
@@ -20,5 +20,5 @@ class RolesController extends Controller
         $role -> save();
        return Response::json($role->load('roles'));
     }
-    
+
 }

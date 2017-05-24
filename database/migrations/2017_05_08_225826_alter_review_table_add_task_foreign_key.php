@@ -16,7 +16,7 @@ class AlterReviewTableAddTaskForeignKey extends Migration
       Schema::table('reviews', function (Blueprint $table)
       {
           $table->integer('task_id')->unsigned();
-          $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
+          $table->foreign('task_id')->references('id')->on('tasks');
       });
     }
 

@@ -14,8 +14,11 @@ use Illuminate\Http\Request;
 */
 
 
+Route::middleware('auth.basic')->get('tasks/{task}/reviews', 'TasksController@indexReviews');
 
-Route::get('projects', 'ProjectsController@index');
+
+
+Route::get('projects', 'ProjectsController@index')->middleware('auth.basic');
 
 Route::get('projects/{project}','ProjectsController@show');
 
@@ -75,17 +78,13 @@ Route::middleware('auth.basic')->get('users/{user}/roles','UsersController@roles
 
 /*****************************************************************/
 
-Route::get('tasks/{task}/reviews', 'TasksController@indexReviews');
+
 
 Route::post('tasks/{task}/reviews','TasksController@storeReview');
 
-Route::delete('tasks/{task}/reviews/{review}','TasksController@destroyReview'); //ESTA
+Route::delete('reviews/{review}','ReviewsController@destroy'); //ESTA
 
-Route::put('tasks/{task}/reviews/{review}','TasksController@updateReview'); //ESTA
+Route::put('reviews/{review}','ReviewsController@update'); //ESTA
 //noe
 
 /*****************************************************************/
-
-
-
-
