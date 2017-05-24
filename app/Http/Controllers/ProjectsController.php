@@ -41,6 +41,13 @@ class ProjectsController extends Controller
     return $project;
   }
 
+  public function updatePartial(UpdateProjectPut $request, Project $project)
+  {
+    $attributes = $request->all();
+    $project->update($attributes);
+    return $project;
+  }
+
   public function storeTask(Project $project, StoreTaskProjectPost $request)
   {
        $attributes = Input::only('user_id', 'name', 'description', 'state', 'role_id');
