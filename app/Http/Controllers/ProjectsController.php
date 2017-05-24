@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use App\Task;
-use Illuminate\Http\Request;
 use Response;
 
 class ProjectsController extends Controller
@@ -12,12 +11,17 @@ class ProjectsController extends Controller
     //
     public function destroy(Project $project)
     {
-        $project->delete();
-        return Response::json([], 204);
+        if ($project->tasks() == null) {
+            $project->delete();
+            return Response::json([], 204);
+        }else {
+            echo "No puedes eleminiar proyectos con tareas.";
+        }
     }
+
     public function destroyTask(Project $project, Task $task)
     {
-        $task = App\Task::find($task);
+        $tasks = $project->tasks();
         $task->delete();
         return Response::json([], 204);
     }
