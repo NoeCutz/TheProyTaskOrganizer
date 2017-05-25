@@ -2,26 +2,18 @@
 namespace App\Http\Controllers;
 use Response;
 use Illuminate\Http\Request;
-<<<<<<< HEAD
-use App\User;
-use App\Project;
-use App\Task;
 use App\Http\Requests\StoreProjectPost;
-=======
 use App\Task;
 use App\User;
 use App\Project;
 use App\Role;
-use Response;
 use App\Http\Requests\StoreTaskProjectPost;
 use App\Http\Request\ShowTasksProjectUserGet;
 use Illuminate\Support\Facades\Auth;
->>>>>>> dev_noe
 
 class ProjectsController extends Controller
 {
 
-<<<<<<< HEAD
   public function index()
   {
     return Response::json(Project::all());
@@ -76,7 +68,7 @@ class ProjectsController extends Controller
       $task->delete();
       return response()->json('', 204);
   }
-=======
+
   public function storeTask(Project $project, StoreTaskProjectPost $request){
      $attributes = $request->all();
      $task = new Task($attributes);
@@ -96,5 +88,4 @@ public function userTasks(Project $project, User $user){
       return Response::json($tasks);
   }
 }
->>>>>>> dev_noe
 }
