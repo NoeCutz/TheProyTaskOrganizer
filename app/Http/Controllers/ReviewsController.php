@@ -35,7 +35,7 @@ class ReviewsController extends Controller
         $review -> delete();
         return Response::json([],204);
       }else{
-        echo "No puedes eliminar una revision que no creaste";
+          return Response::json("No puedes eliminar una revision que no creaste");
       }
 
     }

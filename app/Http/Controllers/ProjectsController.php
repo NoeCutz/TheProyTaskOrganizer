@@ -16,7 +16,7 @@ class ProjectsController extends Controller
 
   public function index()
   {
-    return Response::json(Project::all());
+    return Project::paginate(15);
   }
 
   public function show($id)
@@ -65,8 +65,12 @@ class ProjectsController extends Controller
 
   public function destroyTask(Project $project, Task $task)
   {
-      $task->delete();
-      return response()->json('', 204);
+      if($task->user()->id == Auth::id()) {
+          $task->delete();
+          return response()->json('', 204);
+      }else{
+          return Response::json("No eres el usuario");
+      }
   }
 
   public function storeTask(Project $project, StoreTaskProjectPost $request){
@@ -86,6 +90,8 @@ public function userTasks(Project $project, User $user){
       $tasks_project = Task::where('project_id', $project->id)->get();
       $tasks = $tasks_project->where('user_id', $id);
       return Response::json($tasks);
+  }else{
+      return Response::json("No eres el usuario");
   }
 }
 }

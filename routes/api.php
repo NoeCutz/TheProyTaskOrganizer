@@ -17,15 +17,15 @@ use Illuminate\Http\Request;
 
 
 
-Route::get('projects', 'ProjectsController@index')->middleware('auth.basic');
+Route::middleware('auth.basic')->get('projects', 'ProjectsController@index')->middleware('auth.basic');
 
-Route::get('projects/{project}','ProjectsController@show');
+Route::middleware('auth.basic')->get('projects/{project}','ProjectsController@show');
 
-Route::post('projects','ProjectsController@store');
+Route::middleware('auth.basic')->post('projects','ProjectsController@store');
 
-Route::put('projects/{project}','ProjectsController@update');
+Route::middleware('auth.basic')->put('projects/{project}','ProjectsController@update');
 
-Route::patch('projects/{project}','ProjectsController@updatePartial');
+Route::middleware('auth.basic')->patch('projects/{project}','ProjectsController@updatePartial');
 //termina aqui pat
 
 Route::middleware('auth.basic')->delete('projects/{project}','ProjectsController@destroy'); //PENDIENTE
@@ -43,21 +43,21 @@ Route::middleware('auth.basic')->get('projects/{project}/tasks','ProjectsControl
 //angel
 
 
-Route::post('projects/{project}/tasks','ProjectsController@storeTask');
+Route::middleware('auth.basic')->post('projects/{project}/tasks','ProjectsController@storeTask');
 
-Route::put('projects/{project}/tasks/{task}','TasksController@updateTask');
+Route::middleware('auth.basic')->put('projects/{project}/tasks/{task}','TasksController@updateTask');
 
-Route::patch('projects/{project}/tasks/{task}','TasksController@updatePartialTask');
+Route::middleware('auth.basic')->patch('projects/{project}/tasks/{task}','TasksController@updatePartialTask');
 
 Route::middleware('auth.basic')->get('projects/{project}/users/{user}/tasks','ProjectsController@userTasks');
 
 
 
 
-Route::post('projects/{project}/roles','RolesController@storeRole');
+Route::middleware('auth.basic')->post('projects/{project}/roles','RolesController@storeRole');
 //milka
 
-Route::get('projects/{project}/roles','RolesController@index');
+Route::middleware('auth.basic')->get('projects/{project}/roles','RolesController@index');
 
 /*****************************************************************/
 
